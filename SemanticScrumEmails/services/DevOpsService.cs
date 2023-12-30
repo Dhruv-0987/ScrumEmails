@@ -64,12 +64,12 @@ public class DevOpsService: IDevOpsService
                 Convert.ToBase64String(Encoding.ASCII.GetBytes($":{personalAccessToken}")));
 
             var wiqlQuery = $@"
-            SELECT [System.Id], [System.Title], [System.State] 
-            FROM WorkItems 
-            WHERE [System.WorkItemType] = 'Product Backlog Item' 
-            AND [System.AssignedTo] = @me 
-            AND [System.IterationPath] = '{iterationPath}'
-            ORDER BY [System.CreatedDate] DESC";
+                            SELECT [System.Id], [System.Title], [System.State] 
+                            FROM WorkItems 
+                            WHERE [System.WorkItemType] = 'Product Backlog Item' 
+                            AND [System.AssignedTo] = @me 
+                            AND [System.IterationPath] = '{iterationPath}'
+                            ORDER BY [System.CreatedDate] DESC";
 
             var requestBody = new
             {

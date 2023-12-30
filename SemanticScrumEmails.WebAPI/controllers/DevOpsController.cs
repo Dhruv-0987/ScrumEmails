@@ -1,9 +1,6 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.VisualBasic.CompilerServices;
 using SemanticScrumEmails.interfaces;
-using SemanticScrumEmails.WebAPI.DTOs;
 
 namespace SemanticScrumEmails.WebAPI.controllers;
 
@@ -30,27 +27,6 @@ public class DevOpsController : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(500, "An error occurred while retrieving projects.");
-        }
-    }
-    
-    [HttpGet("SprintDetails")]
-    public async Task<ActionResult<JsonElement>> GetSprintDetails([FromQuery] string organisation, [FromQuery] string project, 
-        [FromQuery] string pat)
-    {
-        if (string.IsNullOrEmpty(organisation) || string.IsNullOrEmpty(project) || string.IsNullOrEmpty(pat))
-        {
-            return BadRequest("Organization, Project, and Personal Access Token are required.");
-        }
-
-        try
-        {
-            var sprintData = await _devOpsService.GetSprintDataAsync(organisation, project, pat);
-            // ReSharper disable once HeapView.BoxingAllocation
-            return Ok(sprintData); // This will return JSON response
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "An error occurred while retrieving sprint data.");
         }
     }
 

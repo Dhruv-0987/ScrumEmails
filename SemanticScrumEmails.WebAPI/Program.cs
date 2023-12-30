@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using SemanticScrumEmails.interfaces;
+using SemanticScrumEmails.Queries.DevOps;
 using SemanticScrumEmails.services;
+using SemanticScrumEmails.WebAPI.endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +25,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IDevOpsService, DevOpsService>();
+builder.Services.AddScoped<GetSprintDetailsService>();
 
 var app = builder.Build();
+
+app.MapDevOpsEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
