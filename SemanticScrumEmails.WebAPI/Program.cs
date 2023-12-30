@@ -26,6 +26,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IDevOpsService, DevOpsService>();
 builder.Services.AddScoped<GetSprintDetailsService>();
+builder.Services.AddScoped<GetAssignedTasksService>();
 
 var app = builder.Build();
 

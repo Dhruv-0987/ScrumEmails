@@ -29,30 +29,7 @@ public class DevOpsController : ControllerBase
             return StatusCode(500, "An error occurred while retrieving projects.");
         }
     }
-
-    [HttpGet("GetAssignedPBIs")]
-    public async Task<ActionResult<JsonElement?>> GetAssignedPBIs([FromQuery] string organisation,
-        [FromQuery] string project,
-        [FromQuery] string pat,
-        [FromQuery] string iteration)
-    {
-        if (string.IsNullOrEmpty(organisation) || string.IsNullOrEmpty(project) || string.IsNullOrEmpty(pat))
-        {
-            return BadRequest("Organization, Project, and Personal Access Token are required.");
-        }
-
-        try
-        {
-            var assignedPBIs = await _devOpsService.GetMyAssignedPBIsAsync(organisation, project, pat, iteration);
-            // ReSharper disable once HeapView.BoxingAllocation
-            return Ok(assignedPBIs); // This will return JSON response
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, "An error occurred while retrieving sprint data.");
-        }
-    }
-
+    
     [HttpGet("GetWorkItemDetails")]
     public async Task<ActionResult<JsonElement?>> GetWorkItemDetails([FromQuery] int itemId, [FromQuery] string pat,
         [FromQuery] string organisation)

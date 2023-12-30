@@ -14,7 +14,7 @@ public class GetAssignedTasksService(IDevOpsService devOpsService)
       try
       {
          var assignedTasks = await devOpsService.GetMyAssignedPBIsAsync(organisation, project, pat, iteration);
-         return assignedTasks != null ? Results.Ok(assignedTasks) : Results.Problem("Assigned Tasks Not Found");
+         return assignedTasks != null ? Results.Ok(assignedTasks) : Results.NotFound("Assigned Tasks Not Found");
       }
       catch
       {
