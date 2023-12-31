@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using SemanticScrumEmails.interfaces;
 using SemanticScrumEmails.Queries.DevOps;
 
 namespace SemanticScrumEmails.WebAPI.endpoints;
@@ -17,9 +14,9 @@ public static class DevOpsEndpoints
             await service.GetSprintDetailsAsync(organisation, project, pat)
         );
 
-        group.MapGet("/GetAssignedUserPBIs", async (string organisation, string project, string pat, string iteration,
+        group.MapGet("/AssignedUserTasksForCurrentSprint", async (string organisation, string project, string pat,
             GetAssignedTasksService service) =>
-            await service.GetAssignedTasksCurrentSprint(organisation, project, pat, iteration)
+            await service.GetAssignedTasksCurrentSprint(organisation, project, pat)
         );
     }
     

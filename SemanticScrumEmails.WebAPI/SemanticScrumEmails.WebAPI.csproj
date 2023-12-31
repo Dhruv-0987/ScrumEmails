@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SemanticScrumEmails\SemanticScrumEmails.csproj" />
+      <ProjectReference Include="..\SemanticScrumEmails.Application\SemanticScrumEmails.Application.csproj" />
     </ItemGroup>
 
 </Project>

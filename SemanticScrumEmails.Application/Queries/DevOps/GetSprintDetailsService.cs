@@ -13,7 +13,7 @@ public class GetSprintDetailsService(IDevOpsService devOpsService)
 
         try
         {
-            var sprintData = await devOpsService.GetSprintDataAsync(organisation, project, pat);
+            var sprintData = await devOpsService.GetCurrentSprintDataAsync(organisation, project, pat);
             return sprintData != null ? Results.Ok(sprintData) : Results.NotFound("An error occurred while retrieving sprint data.");
         }
         catch (Exception ex)

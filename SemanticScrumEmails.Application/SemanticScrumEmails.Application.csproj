@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>12</LangVersion>
+        <RootNamespace>SemanticScrumEmails</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />

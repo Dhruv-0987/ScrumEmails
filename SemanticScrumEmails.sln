@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticScrumEmails", "SemanticScrumEmails\SemanticScrumEmails.csproj", "{A4AE023B-C536-4318-8613-6375017054D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticScrumEmails.Application", "SemanticScrumEmails.Application\SemanticScrumEmails.Application.csproj", "{A4AE023B-C536-4318-8613-6375017054D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticScrumEmails.WebAPI", "SemanticScrumEmails.WebAPI\SemanticScrumEmails.WebAPI.csproj", "{97F842CA-A984-4E6E-862C-61A137AA5243}"
 EndProject

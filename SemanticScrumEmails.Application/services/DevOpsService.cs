@@ -30,7 +30,7 @@ public class DevOpsService: IDevOpsService
         return JsonDocument.Parse(content).RootElement;
     }
     
-    public async Task<JsonElement?> GetSprintDataAsync(string organization, string project, string personalAccessToken)
+    public async Task<JsonElement?> GetCurrentSprintDataAsync(string organization, string project, string personalAccessToken)
     {
         try
         {
@@ -48,7 +48,30 @@ public class DevOpsService: IDevOpsService
             }
 
             var content = await response.Content.ReadAsStringAsync();
-            return JsonDocument.Parse(content).RootElement;
+            var iterations = JsonDocument.Parse(content).RootElement;
+
+            var currentDate = DateTime.Now;
+            foreach (var iteration in iterations.GetProperty("value").EnumerateArray().Reverse())
+            {
+                var attributes = iteration.GetProperty("attributes");
+             
+                if (!attributes.TryGetProperty("startDate", out var startDateElement) || startDateElement.ValueKind == JsonValueKind.Null ||
+                    !attributes.TryGetProperty("finishDate", out var finishDateElement) || finishDateElement.ValueKind == JsonValueKind.Null)
+                {
+                    continue; // Skip this iteration if dates are missing or null
+                }
+
+                var startDate = DateTime.Parse(startDateElement.GetString());
+                var finishDate = DateTime.Parse(finishDateElement.GetString());
+
+                if (currentDate >= startDate && currentDate <= finishDate)
+                {
+                    return iteration; // Current iteration found
+                }
+            }
+            
+            _logger.LogError("No current iteration found");
+            return null;
         }
         catch (Exception ex)
         {
